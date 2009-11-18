@@ -1,3 +1,4 @@
+require 'stubs'
 $:.unshift File.join(__FILE__,'..','lib')
 require 'rhodes_translator'
 
@@ -14,6 +15,18 @@ describe "RhodesTranslatorHelper", :shared => true do
                      :name => 'number1',
                      :type => 'number',
                      :type_class => 'show_number' }
+                     
+    @panel1 = { :title => 'Some Panel',
+                :type => 'panel',
+                :children => [@textfield] }
+                
+    @panel2 = { :title => 'Some Panel',
+                :type => 'panel',
+                :children => [@textfield] }
+                     
+    @view1 = { :title => 'View 1',
+               :type => 'view',
+               :children => [@panel1,@panel2] }
   end
   
   def get_template(name)

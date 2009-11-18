@@ -1,6 +1,5 @@
 require File.join(File.dirname(__FILE__),'spec_helper')
 $:.unshift File.join(__FILE__,'..','lib')
-require 'rhodes_translator'
 
 describe "FieldTranslator" do
   
