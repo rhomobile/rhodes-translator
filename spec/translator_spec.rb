@@ -10,8 +10,14 @@ describe "Translator" do
     @t = RhodesTranslator::Translator.new
   end
   
-  it "should raise exception if default translator is used" do
-    lambda { @t.translate }.should raise_error(Exception, "Should never get here.")
+  it "should translate show view with nested div" do
+    expected = open(get_template('view_show.html')).read
+    @t.translate('show',@view1).split.join('').should == expected.split.join('')
+  end
+
+  it "should translate textfield show action" do
+    expected = open(get_template('text_show.html')).read
+    @t.translate('show',@textfield).should == expected
   end
   
 end
