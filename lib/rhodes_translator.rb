@@ -1,4 +1,5 @@
 require 'rhodes_translator/translator'
+require 'rhodes_translator/binding'
 
 module RhodesTranslator
   
@@ -6,6 +7,7 @@ module RhodesTranslator
   def load_erb(action,doc_def)
     @doc_def = doc_def
     file = File.join(File.dirname(File.join(__rhoGetCurrentDir(), __FILE__)),
+                     'rhodes_translator',
                      'templates',
                      "#{doc_def[:type]}_#{action}_erb.iseq")
     eval_compiled_file(file, binding )
