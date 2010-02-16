@@ -1,6 +1,6 @@
-require 'stubs'
 $:.unshift File.join(__FILE__,'..','lib')
 require 'rhodes_translator'
+require 'stubs'
 
 describe "RhodesTranslatorHelper", :shared => true do
   before(:each) do

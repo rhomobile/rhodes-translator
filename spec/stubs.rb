@@ -1,3 +1,5 @@
+require 'erb'
+
 module RhodesTranslator
   def load_erb(action,doc_def)
     @doc_def = doc_def
