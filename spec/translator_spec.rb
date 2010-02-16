@@ -24,5 +24,11 @@ describe "Translator" do
     expected = open(get_template('nest_show.html')).read
     @t.translate('show',@view2).should == expected
   end
-  
+
+  it "should handle complex templates" do
+    expected = open(get_template('complex_show.html')).read
+    @t.translate('show',@complex).should == expected
+    
+  end
+
 end

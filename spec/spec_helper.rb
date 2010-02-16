@@ -23,13 +23,20 @@ describe "RhodesTranslatorHelper", :shared => true do
     @panel2 = { :title => 'Some Panel',
                 :type => 'panel',
                 :children => [@textfield] }
+    @panel3 = { :title => 'Some Panel',
+                :type => 'panel',
+                :children => [@panel2] }
                      
     @view1 = { :title => 'View 1',
                :type => 'view',
                :children => [@panel1,@panel2] }
+
     @view2 = { :title => 'View 2',
                :type => 'view',
                :children => [@view1,@view1] }
+    @complex = { :title => 'View 2',
+                 :type => 'view',
+                 :children => [@textfield,@view2,@panel3,@textfield] }
   end
   
   def get_template(name)
