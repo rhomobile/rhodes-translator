@@ -27,6 +27,9 @@ describe "RhodesTranslatorHelper", :shared => true do
     @view1 = { :title => 'View 1',
                :type => 'view',
                :children => [@panel1,@panel2] }
+    @view2 = { :title => 'View 2',
+               :type => 'view',
+               :children => [@view1,@view1] }
   end
   
   def get_template(name)

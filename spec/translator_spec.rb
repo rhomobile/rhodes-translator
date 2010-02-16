@@ -19,5 +19,10 @@ describe "Translator" do
     expected = open(get_template('text_show.html')).read
     @t.translate('show',@textfield).should == expected
   end
+
+  it "should handle nested views" do
+    expected = open(get_template('nest_show.html')).read
+    @t.translate('show',@view2).should == expected
+  end
   
 end
