@@ -11,8 +11,12 @@ describe "Binding" do
     @b = RhodesTranslator::Binding.new
 
     @klass = Class.new do
-      def get_name
-        "Some Name"
+      def get_firstname
+        "Some"
+      end
+
+      def get_lastname
+        "Name"
       end
     end 
   end

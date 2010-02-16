@@ -11,7 +11,7 @@ describe "RhodesTranslatorHelper", :shared => true do
                    :type_class => 'show_text' }
 
     @textfieldbind = { :label => 'Address',
-                       :value => '#{get_name}',
+                       :value => '#{get_firstname} #{get_lastname}',
                        :name => 'address1',
                        :type => 'text',
                        :type_class => 'show_text' }

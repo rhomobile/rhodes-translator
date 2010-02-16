@@ -13,7 +13,8 @@ module RhodesTranslator
           if v.is_a? String
             while v =~ /#\{(.*?)\}/
               method = $1.strip
-              v.gsub!(/#\{.*?\}/, data.send(method))
+              regexp = '#\{' + $1 + '\}'
+              v.gsub!(Regexp.new(regexp) , data.send(method))
             end
             view_def[k] = v
           end
