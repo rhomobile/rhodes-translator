@@ -5,6 +5,5 @@ module RhodesTranslator
     def translate
       raise "Should never get here."
     end
-    
   end
 end
