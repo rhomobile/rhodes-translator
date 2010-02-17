@@ -10,19 +10,85 @@ describe "Binding" do
   before(:each) do
     @b = RhodesTranslator::Binding.new
 
-    @klass = Class.new do
-      def get_firstname
-        "Some"
-      end
-
-      def get_lastname
-        "Name"
-      end
-    end 
   end
   
-  it "should parse the binding" do
-    (@b.bind(@klass.new,@textfieldbind))[:value].should == "Some Name"
+  it "should handle hashes" do
+    textfieldbind = { :label => 'Address',
+                      :value => '{{first_name}} {{last_name}}',
+                      :name => 'address1',
+                      :type => 'text',
+                      :type_class => 'show_text' }
+
+    data = {'first_name' => 'Some', 'last_name' => 'Name'}
+
+    (@b.bind(data,textfieldbind))[:value].should == "Some Name"
+  end
+
+  it "should handle nested hashes" do
+    textfieldbind = { :label => 'Address',
+                      :value => '{{user1|first_name}} {{user1|last_name}}',
+                      :name => 'address1',
+                      :type => 'text',
+                      :type_class => 'show_text' }
+
+    data = {
+      'baduser' => {'first_name' => 'Not', 'last_name' => 'Me'},
+      'user1' => {'first_name' => 'Some', 'last_name' => 'Name'}
+    }
+
+    (@b.bind(data,textfieldbind))[:value].should == "Some Name"
+  end
+
+  it "should be an error for bad hash key" do
+    textfieldbind = { :label => 'Address',
+                      :value => '{{bad_key}}',
+                      :name => 'address1',
+                      :type => 'text',
+                      :type_class => 'show_text' }
+
+    data = {'first_name' => 'Some', 'last_name' => 'Name'}
+
+    (@b.bind(data,textfieldbind))[:value].should == "INVALID KEY"
+
+  end
+
+  it "should handle arrays" do
+    textfieldbind = { :label => 'Address',
+                      :value => '{{1|first_name}} {{1|last_name}}',
+                      :name => 'address1',
+                      :type => 'text',
+                      :type_class => 'show_text' }
+
+    data = [ {'first_name' => 'Not', 'last_name' => 'Me'},
+             {'first_name' => 'Some', 'last_name' => 'Name'} ]
+
+    (@b.bind(data,textfieldbind))[:value].should == "Some Name"
+  end
+
+  it "should be an error for a non-integer array index" do
+    textfieldbind = { :label => 'Address',
+                      :value => '{{user1|first_name}}',
+                      :name => 'address1',
+                      :type => 'text',
+                      :type_class => 'show_text' }
+
+    data = [ {'first_name' => 'Not', 'last_name' => 'Me'},
+             {'first_name' => 'Some', 'last_name' => 'Name'} ]
+
+    (@b.bind(data,textfieldbind))[:value].should == "INVALID INDEX"
+  end
+
+  it "should be an error for invalid index" do
+    textfieldbind = { :label => 'Address',
+                      :value => '{{9|first_name}}',
+                      :name => 'address1',
+                      :type => 'text',
+                      :type_class => 'show_text' }
+
+    data = [ {'first_name' => 'Not', 'last_name' => 'Me'},
+             {'first_name' => 'Some', 'last_name' => 'Name'} ]
+
+    (@b.bind(data,textfieldbind))[:value].should == "INVALID INDEX"
   end
 
 end
