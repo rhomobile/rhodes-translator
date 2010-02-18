@@ -4,6 +4,8 @@ module RhodesTranslator
     def bind(data,view_def,first=true)
       @origdata = data if first
 
+      return if view_def.nil?
+      
       view_def[:children] ||= []
 
       if view_def[:type] == 'repeatable'
@@ -32,8 +34,8 @@ module RhodesTranslator
     end
 
     def decode_path(data,pathstring)
-      data = @origdata if pathstring =~ /^\|/
-      elements = pathstring.split('|')
+      data = @origdata if pathstring =~ /^\//
+      elements = pathstring.split('/')
       current = data
       while element = elements.delete_at(0)
         element.strip!
@@ -47,6 +49,12 @@ module RhodesTranslator
              key = element.strip
              return "INVALID KEY" if current[key].nil?
              current = current[key]
+           elsif 
+             begin
+               current = current.send element.strip
+             rescue Exception => e
+               return "INVALID DATA TYPE"
+             end
            end
         rescue
           return "UNDEFINED ELEMENT"
