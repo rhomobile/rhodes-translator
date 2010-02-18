@@ -8,8 +8,8 @@ module RhodesTranslator
     # given a view action and view definition
     def translate(action,view_def)
       @content = ''
-      view_def[:children] ||= []
-      view_def[:children].each do |child|
+      view_def['children'] ||= []
+      view_def['children'].each do |child|
         @content += self.translate(action,child)
       end
       load_erb(action,view_def)

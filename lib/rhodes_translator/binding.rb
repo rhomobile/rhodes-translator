@@ -6,12 +6,12 @@ module RhodesTranslator
 
       return if view_def.nil?
       
-      view_def[:children] ||= []
+      view_def['children'] ||= []
 
-      if view_def[:type] == 'repeatable'
+      if view_def['type'] == 'repeatable'
         #handle repeatable, must have an elements key. children here are different
       else
-        view_def[:children].each do |child|
+        view_def['children'].each do |child|
           self.bind(data,child,false)
         end
 
@@ -19,7 +19,7 @@ module RhodesTranslator
 
 
       view_def.each do |k,v|
-        unless k == :children
+        unless k == 'children'
           if v.is_a? String
             while v =~ /\{\{(.*?)\}\}/
               pathstring = $1.strip

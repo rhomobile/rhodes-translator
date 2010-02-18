@@ -7,7 +7,7 @@ module RhodesTranslator
                      '..',
                      'lib',
                      'rhodes_translator',
-                     'templates',"#{doc_def[:type]}_#{action}.erb")
+                     'templates',"#{doc_def['type']}_#{action}.erb")
     ERB.new(open(file).read).result(binding)
   end
 end
