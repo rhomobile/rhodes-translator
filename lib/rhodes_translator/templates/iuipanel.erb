@@ -1,0 +1,8 @@
+<div class="toolbar">
+  <h1 id="pageTitle">
+    <%=@doc_def['title']%>
+  </h1>
+</div>
+
+<div class="panel" selected="true">
+<%@content.each_line do |line|%><%= "  " + line%><%end%></div>
