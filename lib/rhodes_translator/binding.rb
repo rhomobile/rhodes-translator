@@ -8,8 +8,22 @@ module RhodesTranslator
       
       view_def['children'] ||= []
 
-      if view_def['type'] == 'repeatable'
-        #handle repeatable, must have an elements key. children here are different
+      if view_def['repeatable'] and view_def['repeatable'] =~ /\{\{(.*?)\}\}/
+        pathstring = $1.strip
+        value = decode_path(data,pathstring)
+        new_children = []
+        repeat_def = view_def
+        repeat_def['repeatable'] = nil
+        if value.is_a? Array or value.is_a? Hash
+          value.each do |element|
+            new_def = Marshal.load(Marshal.dump(repeat_def))
+            new_child = self.bind(element,new_def,false)["children"]
+            new_child.each do |child|
+              new_children << child
+            end
+          end 
+        end
+        view_def['children'] = new_children
       else
         view_def['children'].each do |child|
           self.bind(data,child,false)
@@ -31,11 +45,16 @@ module RhodesTranslator
           end
         end
       end
+
+      view_def
     end
 
     def decode_path(data,pathstring)
       data = @origdata if pathstring =~ /^\//
+#      puts "PATH: #{pathstring}, DATA: #{data.inspect}"
       elements = pathstring.split('/')
+      elements.delete_at(0) if pathstring =~ /^\//
+#      puts "ELEMENTS: #{elements.inspect}"
       current = data
       while element = elements.delete_at(0)
         element.strip!

@@ -91,4 +91,33 @@ describe "Binding" do
     (@b.bind(data,textfieldbind))['value'].should == "INVALID INDEX"
   end
 
+  it "should expand repeatables" do
+    row3 = { 'label' => '{{/names/0/first_name}}',
+             'value' => '{{first_name}}, {{last_name}}',
+             'name' => 'address2',
+             'type' => 'labeledrow' }
+
+
+    table = { 'label' => 'Table',
+              'type' => 'table',
+              'children' => [ row3 ],
+              'repeatable' => '{{names}}' }
+
+
+
+    view = { 'title' => 'IUI meta panel',
+             'type' => 'iuipanel',
+             'children' => [table] }
+
+    data = {'names' => [ {'first_name' => 'Not', 'last_name' => 'Me'},
+             {'first_name' => 'Some', 'last_name' => 'Name'} ] }
+    @b.bind(data,view)
+    
+    view['children'][0]['children'][0]['label'].should == "Not"
+    view['children'][0]['children'][0]['value'].should == "Not, Me"
+    view['children'][0]['children'][1]['label'].should == "Not"
+    view['children'][0]['children'][1]['value'].should == "Some, Name"
+
+
+  end
 end
