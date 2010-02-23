@@ -65,6 +65,53 @@ describe "Binding" do
     (@b.bind(data,textfieldbind))['value'].should == "Some Name"
   end
 
+  it "should handle objects" do
+    textfieldbind = { 'label' => 'Address',
+                      'value' => '{{0/first_name}} {{0/last_name}}',
+                      'name' => 'address1',
+                      'type' => 'text',
+                      'type_class' => 'show_text' }
+    class TestObject 
+       def first_name
+         'Not'
+       end
+       def last_name
+         'Me'
+       end
+    end
+
+    testobj = TestObject.new
+    data = [ testobj ,
+             {'first_name' => 'Some', 'last_name' => 'Name'} ]
+
+    (@b.bind(data,textfieldbind))['value'].should == "Not Me"
+
+  end
+
+  it "should handle have error for object" do
+    textfieldbind = { 'label' => 'Address',
+                      'value' => '{{0/first}} {{0/last_name}}',
+                      'name' => 'address1',
+                      'type' => 'text',
+                      'type_class' => 'show_text' }
+    class TestObject
+       def first_name
+         'Not'
+       end
+       def last_name
+         'Me'
+       end
+    end
+
+    testobj = TestObject.new
+    data = [ testobj ,
+             {'first_name' => 'Some', 'last_name' => 'Name'} ]
+
+    (@b.bind(data,textfieldbind))['value'].should == "INVALID DATA TYPE Me"
+
+  end
+
+
   it "should be an error for a non-integer array index" do
     textfieldbind = { 'label' => 'Address',
                       'value' => '{{user1/first_name}}',
@@ -90,6 +137,7 @@ describe "Binding" do
 
     (@b.bind(data,textfieldbind))['value'].should == "INVALID INDEX"
   end
+
 
   it "should expand repeatables" do
     row3 = { 'label' => '{{/names/0/first_name}}',

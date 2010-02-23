@@ -58,7 +58,6 @@ module RhodesTranslator
       current = data
       while element = elements.delete_at(0)
         element.strip!
-        begin
            if current.is_a? Array
              index = element.to_i
              return "INVALID INDEX" if index == 0 and element[0].chr != '0'
@@ -68,16 +67,13 @@ module RhodesTranslator
              key = element.strip
              return "INVALID KEY" if current[key].nil?
              current = current[key]
-           elsif 
+           else
              begin
                current = current.send element.strip
              rescue Exception => e
                return "INVALID DATA TYPE"
              end
            end
-        rescue
-          return "UNDEFINED ELEMENT"
-        end #begin
       end #while
       current
     end #decode_path
