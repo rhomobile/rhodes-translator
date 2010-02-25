@@ -1,2 +1,3 @@
-<table class="grid">
+<table 
+  <%= "class=\"#{@doc_def['class']}\"" if @doc_def['class'] %> >
 <%@content.each_line do |line|%><%= "  " + line%><%end%></table>

@@ -1,0 +1,5 @@
+<form 
+  <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
+  <%= "action=\"#{@doc_def['action']}\"" if @doc_def['action'] %>
+  <%= "method=\"#{@doc_def['method']}\"" if @doc_def['method'] %> >
+<%@content.each_line do |line|%><%= "  " + line%><%end%></form>
