@@ -12,22 +12,22 @@ describe "Translator" do
   
   it "should translate show view with nested div" do
     expected = open(get_template('view_show.html')).read
-    @t.translate('show',@view1).split.join('').should == expected.split.join('')
+    @t.translate(@view1).split.join('').should == expected.split.join('')
   end
 
   it "should translate textfield show action" do
     expected = open(get_template('text_show.html')).read
-    @t.translate('show',@textfield).should == expected
+    @t.translate(@textfield).should == expected
   end
 
   it "should handle nested views" do
     expected = open(get_template('nest_show.html')).read
-    @t.translate('show',@view2).should == expected
+    @t.translate(@view2).should == expected
   end
 
   it "should handle complex templates" do
     expected = open(get_template('complex_show.html')).read
-    @t.translate('show',@complex).should == expected
+    @t.translate(@complex).should == expected
     
   end
 

@@ -4,13 +4,13 @@ module RhodesTranslator
 
     # Return the translated html for a
     # given a view action and view definition
-    def translate(action,view_def)
+    def translate(view_def)
       @content = ''
       view_def['children'] ||= []
       view_def['children'].each do |child|
-        @content += self.translate(action,child)
+        @content += self.translate(child)
       end
-      load_erb(action,view_def)
+      load_erb(view_def)
     end
 
   end
