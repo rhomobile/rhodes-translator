@@ -6,10 +6,8 @@ describe "Binding" do
 
   it_should_behave_like "RhodesTranslatorHelper"
 
-  
   before(:each) do
     @b = RhodesTranslator::Binding.new
-
   end
   
   it "should handle hashes" do
