@@ -185,4 +185,31 @@ describe "Validation" do
 
   end
 
+  it "should have an error for nil metadata" do
+    data = {'address1' => '12'}
+
+    @v.validate(nil,data,@referrer)[0].should == "No metadata found for action index"
+  end
+
+  it "should have an error for validation with no name" do
+    @address1 = { 'label' => 'Address',
+      'validation' => {
+        'validators' => ['required']
+      }
+    }
+
+    @meta = {'index' => @address1}
+    data = {'address1' => '12'}
+
+    @v.validate(@meta,data,@referrer)[0].should == "Metadata element has validation with no name"
+
+  end
+
+  it "should have an error name with no value" do
+    data = {'address111' => '12'}
+
+    @v.validate(@meta,data,@referrer)[0].should == "No value submitted for metadata element with name address1"
+
+  end
+
 end

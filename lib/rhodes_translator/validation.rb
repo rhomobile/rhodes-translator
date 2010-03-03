@@ -13,7 +13,7 @@ module RhodesTranslator
 
       action = get_action(referer)
 
-      metadata = metadata[action]
+      metadata = metadata[action] unless metadata.nil?
       if metadata.nil?
         @errors = ["No metadata found for action #{action}"]
         return @errors
