@@ -5,7 +5,8 @@ require 'rhodes_translator/validation'
 module RhodesTranslator
   
   # returns compiled erb with specified def
-  def load_erb(doc_def)
+  def load_erb(doc_def,action)
+    @action = action
     @doc_def = doc_def
         file = File.join(File.dirname(File.join(__rhoGetCurrentDir(), __FILE__)),
                          'rhodes_translator',

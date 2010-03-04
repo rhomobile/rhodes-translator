@@ -1,7 +1,8 @@
 require 'erb'
 
 module RhodesTranslator
-  def load_erb(doc_def)
+  def load_erb(doc_def,action)
+    @action = action
     @doc_def = doc_def
     file = File.join(File.dirname(__FILE__),
                      '..',

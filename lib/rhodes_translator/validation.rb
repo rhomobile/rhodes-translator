@@ -8,10 +8,15 @@ module RhodesTranslator
       'phone' => '^[0-9\- ]+$'
     }
 
-    def validate(metadata, params, referer)
+    def validate(metadata, params)
       @errors = nil
 
-      action = get_action(referer)
+      action = params['metadata_action']
+
+      if action.nil?
+        @errors = ["Unable to determine action"]
+        return @errors
+      end
 
       metadata = metadata[action] unless metadata.nil?
       if metadata.nil?
@@ -84,13 +89,6 @@ module RhodesTranslator
         end
 
       end
-    end
-
-    def get_action(url)
-      data = url.split('/app/')[1]
-      data = data.split('/') unless data.nil?
-      return 'index' if data.nil? or data[1].nil?
-      return data[1]
     end
 
   end

@@ -2,4 +2,5 @@
   <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
   <%= "action=\"#{@doc_def['action']}\"" if @doc_def['action'] %>
   <%= "method=\"#{@doc_def['method']}\"" if @doc_def['method'] %> >
+<input type="hidden" name="metadata_action" value="<%= @action %>"/>
 <%@content.each_line do |line|%><%= "  " + line%><%end%></form>
