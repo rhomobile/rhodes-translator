@@ -1,0 +1,10 @@
+  <textarea
+    type="textarea"
+    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name']%>
+    <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class']%>
+    <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value']%>
+    <%= "rows=\"#{@doc_def['rows']}\"" if @doc_def['rows']%>
+    <%= "cols=\"#{@doc_def['cols']}\"" if @doc_def['cols']%>
+    <%= "disabled" if not @doc_def['editable'].nil? and not @doc_def['editable'] %>
+    >
+  </textarea>
