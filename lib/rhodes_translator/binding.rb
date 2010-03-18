@@ -1,8 +1,11 @@
 module RhodesTranslator
-  class Binding
-    include RhodesTranslator
+  module Binding
+
+    class << self
+      attr_accessor :metaorigdata
+    end
     def bind(data,view_def,first=true)
-      @origdata = data if first
+      Binding.metaorigdata = data if first
 
       return if view_def.nil?
       
@@ -45,12 +48,12 @@ module RhodesTranslator
           end
         end
       end
-
+      Binding.metaorigdata = nil if first
       view_def
     end
 
     def decode_path(data,pathstring)
-      data = @origdata if pathstring =~ /^\//
+      data = Binding.metaorigdata if pathstring =~ /^\//
 #      puts "PATH: #{pathstring}, DATA: #{data.inspect}"
       elements = pathstring.split('/')
       elements.delete_at(0) if pathstring =~ /^\//

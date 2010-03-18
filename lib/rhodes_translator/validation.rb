@@ -1,5 +1,5 @@
 module RhodesTranslator
-  class Validation
+  module Validation
     VALIDATORS = {
       'required' => '^.+$',
       'number' => '[0-9]+',
@@ -58,7 +58,7 @@ module RhodesTranslator
 
         unless metadata['validation']['validators'].nil?
           metadata['validation']['validators'].each do |validator|
-            unless value =~ Regexp.new(VALIDATORS[validator])
+            unless value =~ Regexp.new(RhodesTranslator::Validation::VALIDATORS[validator])
               @errors << "Field #{metadata['name']} did not pass validation #{validator}"
             end
           end

@@ -1,13 +1,13 @@
 require File.join(File.dirname(__FILE__),'spec_helper')
 $:.unshift File.join(__FILE__,'..','lib')
 require 'rhodes_translator'
-
+include RhodesTranslator::Binding
 describe "Binding" do
 
   it_should_behave_like "RhodesTranslatorHelper"
 
   before(:each) do
-    @b = RhodesTranslator::Binding.new
+    #@b = RhodesTranslator::Binding.new
   end
   
   it "should handle hashes" do
@@ -19,7 +19,7 @@ describe "Binding" do
 
     data = {'first_name' => 'Some', 'last_name' => 'Name'}
 
-    (@b.bind(data,textfieldbind))['value'].should == "Some Name"
+    (bind(data,textfieldbind))['value'].should == "Some Name"
   end
 
   it "should handle nested hashes" do
@@ -34,7 +34,7 @@ describe "Binding" do
       'user1' => {'first_name' => 'Some', 'last_name' => 'Name'}
     }
 
-    (@b.bind(data,textfieldbind))['value'].should == "Some Name"
+    (bind(data,textfieldbind))['value'].should == "Some Name"
   end
 
   it "should be an error for bad hash key" do
@@ -46,7 +46,7 @@ describe "Binding" do
 
     data = {'first_name' => 'Some', 'last_name' => 'Name'}
 
-    (@b.bind(data,textfieldbind))['value'].should == "INVALID KEY"
+    (bind(data,textfieldbind))['value'].should == "INVALID KEY"
 
   end
 
@@ -60,7 +60,7 @@ describe "Binding" do
     data = [ {'first_name' => 'Not', 'last_name' => 'Me'},
              {'first_name' => 'Some', 'last_name' => 'Name'} ]
 
-    (@b.bind(data,textfieldbind))['value'].should == "Some Name"
+    (bind(data,textfieldbind))['value'].should == "Some Name"
   end
 
   it "should handle objects" do
@@ -82,7 +82,7 @@ describe "Binding" do
     data = [ testobj ,
              {'first_name' => 'Some', 'last_name' => 'Name'} ]
 
-    (@b.bind(data,textfieldbind))['value'].should == "Not Me"
+    (bind(data,textfieldbind))['value'].should == "Not Me"
 
   end
 
@@ -105,7 +105,7 @@ describe "Binding" do
     data = [ testobj ,
              {'first_name' => 'Some', 'last_name' => 'Name'} ]
 
-    (@b.bind(data,textfieldbind))['value'].should == "INVALID DATA TYPE Me"
+    (bind(data,textfieldbind))['value'].should == "INVALID DATA TYPE Me"
 
   end
 
@@ -120,7 +120,7 @@ describe "Binding" do
     data = [ {'first_name' => 'Not', 'last_name' => 'Me'},
              {'first_name' => 'Some', 'last_name' => 'Name'} ]
 
-    (@b.bind(data,textfieldbind))['value'].should == "INVALID INDEX"
+    (bind(data,textfieldbind))['value'].should == "INVALID INDEX"
   end
 
   it "should be an error for invalid index" do
@@ -133,7 +133,7 @@ describe "Binding" do
     data = [ {'first_name' => 'Not', 'last_name' => 'Me'},
              {'first_name' => 'Some', 'last_name' => 'Name'} ]
 
-    (@b.bind(data,textfieldbind))['value'].should == "INVALID INDEX"
+    (bind(data,textfieldbind))['value'].should == "INVALID INDEX"
   end
 
 
@@ -157,7 +157,7 @@ describe "Binding" do
 
     data = {'names' => [ {'first_name' => 'Not', 'last_name' => 'Me'},
              {'first_name' => 'Some', 'last_name' => 'Name'} ] }
-    @b.bind(data,view)
+    bind(data,view)
     
     view['children'][0]['children'][0]['label'].should == "Not"
     view['children'][0]['children'][0]['value'].should == "Not, Me"
