@@ -28,7 +28,11 @@ module RhodesTranslator
                          'templates',
                          "#{doc_def['type']}_erb.iseq") unless File.exist? file
 
-    eval_compiled_file(file, binding )
+    retval = ""
+
+    retval = eval_compiled_file(file, binding ) if File.exist? file
+
+    retval
   end
   
   end
