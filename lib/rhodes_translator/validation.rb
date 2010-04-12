@@ -11,7 +11,7 @@ module RhodesTranslator
     def validate(metadata, params)
       @errors = nil
 
-      action = params['metadata_action']
+      action = metadata
 
       if action.nil?
         @errors = ["Unable to determine action"]
