@@ -1,0 +1,39 @@
+
+<%
+    puts "MAPLINK"
+    if @doc_def['showmap_url']
+      base_url = @doc_def['showmap_url']
+    else
+      base_url = url_for :action => show_map
+    end
+    base_url = base_url + "?"
+
+    base_url = base_url + "map_type=#{@doc_def['map_type']}&" if @doc_def['map_type']
+    base_url = base_url + "lat=#{@doc_def['lat']}&" if @doc_def['lat']
+    base_url = base_url + "long=#{@doc_def['long']}&" if @doc_def['long']
+    base_url = base_url + "scroll=#{@doc_def['scroll']}&" if @doc_def['scroll']
+    base_url = base_url + "zoom=#{@doc_def['zoom']}&" if @doc_def['zoom']
+    base_url = base_url + "show_user=#{@doc_def['show_user']}&" if @doc_def['show_user']
+    base_url = base_url + "pin_location=#{@doc_def['pin_location']}&" if @doc_def['pin_location']
+    base_url = base_url + "title_location=#{@doc_def['title_location']}&" if @doc_def['title_location']
+    base_url = base_url + "subtitle_location=#{@doc_def['subtitle_location']}&" if @doc_def['subtitle_location']
+    base_url = base_url + "url_location=#{@doc_def['url_location']}&" if @doc_def['url_location']
+    base_url = base_url + "api_key=#{@doc_def['api_key']}&" if @doc_def['api_key']
+    base_url = base_url + "next_uri=#{@doc_def['next_uri']}&" if @doc_def['next_uri']
+
+    if @doc_def['annotations']
+      annotations = ""
+      index = 0
+      @doc_def['annotations'].each do |annotation|
+        annotation.each do |k,v|
+          annotations = annotations + "annotations[#{index}][#{k}]=#{v}&"
+        end
+        index = index + 1
+      end
+      base_url = base_url + annotations
+    end
+
+
+%>
+
+<a href="<%= base_url %>"><%= @doc_def['text'] %></a>
