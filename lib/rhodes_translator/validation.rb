@@ -11,14 +11,14 @@ module RhodesTranslator
     def validate(metadata, params)
       @errors = nil
 
-#      action = metadata
-#
-#      if action.nil?
-#        @errors = ["Unable to determine action"]
-#        return @errors
-#      end
-#
-#      metadata = metadata[action] unless metadata.nil?
+      #      action = metadata
+      #
+      #      if action.nil?
+      #        @errors = ["Unable to determine action"]
+      #        return @errors
+      #      end
+      #
+      #      metadata = metadata[action] unless metadata.nil?
       if metadata.nil?
         @errors = ["No metadata found"]
         return @errors
@@ -27,8 +27,9 @@ module RhodesTranslator
       @errors = []
 
       self.validate_data(metadata,params)
-
-      @errors
+      unless @errors.empty?
+        return @errors
+      end
     end
 
     def validate_data(metadata,params)
