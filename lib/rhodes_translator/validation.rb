@@ -51,6 +51,9 @@ module RhodesTranslator
 
         value = params[metadata['name']]
 
+       
+        return if value.to_s == "" and (metadata['validation']['validators'].nil? or not metadata['validation']['validators'].include? "required")
+
         unless metadata['validation']['regexp'].nil?
           unless value =~ Regexp.new(metadata['validation']['regexp'])
             @errors << "#{metadata['label']} did not pass regexp validation"
