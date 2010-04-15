@@ -70,7 +70,7 @@ module RhodesTranslator
              key = element.strip
              return "INVALID KEY" if current[key].nil?
              current = current[key]
-           else
+           elsif current
              begin
                current = current.send element.strip
              rescue Exception => e
