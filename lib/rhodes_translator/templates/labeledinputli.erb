@@ -1,0 +1,8 @@
+<li>
+  <label <%= "for=\"#{@doc_def['name']}\"" if @doc_def['name']%> class="fieldLabel"><%= @doc_def["label"] %></label>
+  <input type="text"
+    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name']%>
+    <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value']%>
+    <%= placeholder(@doc_def["label"]) if @doc_def['label']%>
+/>
+</li>
