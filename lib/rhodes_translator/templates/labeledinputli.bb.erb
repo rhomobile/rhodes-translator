@@ -1,0 +1,7 @@
+<tr>
+  <td width="125" class="fieldLabel"><%= @doc_def["label"] %></td>
+  <td><input type="text"
+    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name']%>
+    <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value']%>
+/></td>
+</tr>
