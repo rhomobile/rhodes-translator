@@ -76,7 +76,7 @@ module RhodesTranslator
 
         unless metadata['validation']['max_len'].nil?
           if value.length > metadata['validation']['max_len'].to_i
-            @errors << "#{metadata['label']} too short"
+            @errors << "#{metadata['label']} too long"
           end
         end
 
