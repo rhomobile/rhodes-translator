@@ -61,6 +61,18 @@ module RhodesTranslator
       current = data
       while element = elements.delete_at(0)
         element.strip!
+        if element =~ /^#/
+          element.gsub!(/^#/,'')
+          element.gsub!(/\)$/,'')
+          sube = element.split('(')
+          method = sube[0]
+          params = sube[1]
+          if current.respond_to? method.to_sym
+            current = current.send method.to_sym,params
+          else
+            current = data["self"].send method.to_sym,params
+          end
+        else
            if current.is_a? Array
              index = element.to_i
              return "INVALID INDEX" if index == 0 and element[0].chr != '0'
@@ -77,6 +89,7 @@ module RhodesTranslator
                return "INVALID DATA TYPE"
              end
            end
+        end
       end #while
       current
     end #decode_path

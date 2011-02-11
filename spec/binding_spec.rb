@@ -85,6 +85,60 @@ describe "Binding" do
     (bind(data,textfieldbind))['value'].should == "Not Me"
 
   end
+  
+  it "should call methods" do
+    textfieldbind = { 'label' => 'Address',
+                      'value' => '{{0/#method_call(foo)}}',
+                      'name' => 'address1',
+                      'type' => 'text',
+                      'type_class' => 'show_text' }
+    class TestObject 
+       def first_name
+         'Not'
+       end
+       def last_name
+         'Me'
+       end
+       
+       def method_call(somestring)
+         somestring
+       end
+    end
+
+    testobj = TestObject.new
+    data = [ testobj ,
+             {'first_name' => 'Some', 'last_name' => 'Name'} ]
+
+    (bind(data,textfieldbind))['value'].should == "foo"
+
+  end  
+
+  it "should call undefined methods against self" do
+    textfieldbind = { 'label' => 'Address',
+                      'value' => '{{#method_call(foo)}} {{foo}}',
+                      'name' => 'address1',
+                      'type' => 'text',
+                      'type_class' => 'show_text' }
+    class TestObject 
+       def first_name
+         'Not'
+       end
+       def last_name
+         'Me'
+       end
+       
+       def method_call(somestring)
+         somestring
+       end
+    end
+
+    testobj = TestObject.new
+    data = { "self" => testobj, "foo" => "bar" }
+
+    (bind(data,textfieldbind))['value'].should == "foo bar"
+
+  end  
+
 
   it "should handle have error for object" do
     textfieldbind = { 'label' => 'Address',
