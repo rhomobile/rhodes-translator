@@ -20,17 +20,18 @@ module RhodesTranslator
 
     file = File.join(Rho::RhoFSConnector.get_app_path('app'),
                          'templates',
-                         "#{doc_def['type']}_erb.iseq")
+                         "#{doc_def['type']}" + RHO_ERB_EXT)
 
 
     file = File.join(File.dirname(File.join(__rhoGetCurrentDir(), __FILE__)),
                   
                          'templates',
-                         "#{doc_def['type']}_erb.iseq") unless File.exist? file
+                         "#{doc_def['type']}" + RHO_ERB_EXT) unless Rho::file_exist? file
 
     retval = ""
 
-    retval = eval_compiled_file(file, binding ) if File.exist? file
+    puts "TFile: #{file}"
+    retval = eval_compiled_file(file, binding ) if Rho::file_exist? file
 
     retval
   end
