@@ -23,14 +23,21 @@ module RhodesTranslator
                          "#{doc_def['type']}" + RHO_ERB_EXT)
 
 
+if defined?( RHODES_EMULATOR )
+    file = File.join(File.dirname(__FILE__),
+                  
+                         'templates',
+                         "#{doc_def['type']}" + RHO_ERB_EXT) unless Rho::file_exist? file
+else
     file = File.join(File.dirname(File.join(__rhoGetCurrentDir(), __FILE__)),
                   
                          'templates',
                          "#{doc_def['type']}" + RHO_ERB_EXT) unless Rho::file_exist? file
+end
 
     retval = ""
 
-    puts "TFile: #{file}"
+    #puts "TFile: #{file}"
     retval = eval_compiled_file(file, binding ) if Rho::file_exist? file
 
     retval
