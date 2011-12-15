@@ -1,10 +1,16 @@
+<div data-role="fieldcontain" <%= "class=\"#{@doc_def['field_class']}\"" if @doc_def['field_class'] %>>
+  <label <%= "for=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+         class="fieldLabel <%= @doc_def['label_class'] || "" %>"
+  >
+    <%= @doc_def['label'] %>
+  </label>
   <textarea
-    type="textarea"
-    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name']%>
-    <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class']%>
-    <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value']%>
-    <%= "rows=\"#{@doc_def['rows']}\"" if @doc_def['rows']%>
-    <%= "cols=\"#{@doc_def['cols']}\"" if @doc_def['cols']%>
-    <%= "disabled" if not @doc_def['editable'].nil? and not @doc_def['editable'] %>
-    >
-  </textarea>
+        <%= "id=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+        <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
+        <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class'] %>
+        <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value'] %>
+        <%= "rows=\"#{@doc_def['rows']}\"" if @doc_def['rows'] %>
+        <%= "cols=\"#{@doc_def['cols']}\"" if @doc_def['cols'] %>
+        <%= "disabled" if not @doc_def['editable'].nil? and not @doc_def['editable'] %>
+  ></textarea>
+</div>

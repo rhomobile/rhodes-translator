@@ -1,4 +1,4 @@
-<li>
-  <div class="itemLabel"><%= @doc_def["label"] %></div>
-  <div class="itemValue"><%= @doc_def["value"] %></div>
+<li <%= "class=\"#{@doc_def['field_class']}\"" if @doc_def['field_class'] %>>
+    <div class="itemLabel <%= @doc_def["label_class"] || "" %>"><%= @doc_def['label'] %></div>
+    <div class="itemValue <%= @doc_def["value_class"] || "" %>"><%= @doc_def['value'] %></div>
 </li>

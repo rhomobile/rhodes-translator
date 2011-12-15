@@ -1,11 +1,14 @@
-<div <%= "class=\"#{@doc_def['div_class']}\"" if @doc_def['div_class']%> >
-  <label <%= "class=\"#{@doc_def['label_class']}\"" if @doc_def['label_class']%> ><%=@doc_def['label']%></label>
-  <input
-    type="checkbox"
+<label <%= "for=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+     class="fieldLabel <%= @doc_def['label_class'] || "" %>"
+>
+<%= @doc_def['label'] %>
+</label>
+<input type="checkbox"
+    <%= "id=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
     <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
     <% if @doc_def['value'] %>
-      <%= "checked" if @doc_def['value'] == 'true' %>
+        <%= "checked" if @doc_def['value'] == 'true' %>
     <% else %>
-      <%= "checked" if @doc_def['default_value'] %>
-    <% end %>/>
-</div>
+        <%= "checked" if @doc_def['default_value'] %>
+    <% end %>
+/>

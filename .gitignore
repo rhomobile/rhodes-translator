@@ -3,3 +3,4 @@ coverage
 nbproject
 pkg
 rhodes-translator.gemspec
+.idea

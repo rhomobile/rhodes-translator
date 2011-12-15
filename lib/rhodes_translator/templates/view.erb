@@ -1,1 +1,6 @@
-<%=@content%>
+<div data-role="page"
+     <%= "data-id=\"#{@doc_def['page_id']}\"" if @doc_def['page_id'] %>
+     <%= "class=\"#{@doc_def['page_class']}\"" if @doc_def['page_class'] %>
+>
+  <%= @content %>
+</div>

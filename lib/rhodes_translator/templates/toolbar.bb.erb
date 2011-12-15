@@ -1,4 +1,7 @@
-<div id="toolbar">
-    <a href="<%= @doc_def["lefturi"] %>"><%= @doc_def["lefttext"] %></a>
-    <a href="<%= @doc_def["righturi"] %>"><%= @doc_def["righttext"] %></a>
-</div>
+<% unless @doc_def["left_text"].nil? %>
+    <a href="<%= @doc_def["left_uri"] %>"><%= @doc_def["left_text"] %></a>
+<% end %>
+
+<% unless @doc_def["right_text"].nil? %>
+    <a href="<%= @doc_def["right_uri"] %>"><%= @doc_def["right_text"] %></a>
+<% end %>

@@ -1,8 +1,20 @@
-<div id="toolbar">
-    <div id="leftItem"
-         class="<%= @doc_def["leftclass"].nil? ? "regularButton" : @doc_def["leftclass"] %>"
-      ><a href="<%= @doc_def["lefturi"] %>"><%= @doc_def["lefttext"] %></a></div>
-    <div id="rightItem"
-         class="<%= @doc_def["rightclass"].nil? ? "regularButton" : @doc_def["rightclass"] %>"
-      ><a href="<%= @doc_def["righturi"] %>"><%= @doc_def["righttext"] %></a></div>
-</div>
+<% if @doc_def["left_text"] %>
+    <a href="<%= @doc_def["left_uri"] %>"
+       class="<%= @doc_def["left_class"] || "ui-btn-left" %>"
+       data-icon="<%= @doc_def["left_icon"] || "back" %>"
+       data-direction="<%= @doc_def["left_direction"] || "reverse" %>"
+       <%= "data-rel=\"back\"" if @doc_def["left_is_back"] %>
+    >
+      <%= @doc_def["left_text"] %>
+    </a>
+<% end %>
+
+<% if @doc_def["right_text"] %>
+    <a href="<%= @doc_def["right_uri"] %>"
+       class="<%= @doc_def["right_class"] || "ui-btn-right" %>"
+       data-icon="<%= @doc_def["right_icon"] || "arrow-r" %>"
+       <%= "data-direction=\"#{@doc_def["right_direction"]}\"" if @doc_def["right_direction"] %>
+    >
+      <%= @doc_def["right_text"] %>
+    </a>
+<% end %>

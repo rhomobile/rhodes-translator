@@ -1,4 +1,4 @@
 <input type="submit"
-    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name']%>
-    class="<%=  @doc_def['value_class'].nil? ? "standardButton" : @doc_def['value_class'] %>"
-    <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value']%> />
+    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
+    <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class'] %>
+    <%= "value=\"#{@doc_def['value']}\"" if @doc_def['value'] %> />

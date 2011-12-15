@@ -1,4 +1,11 @@
 <div <%= "class=\"#{@doc_def['div_class']}\"" if @doc_def['div_class']%> >
-  <label <%= "class=\"#{@doc_def['label_class']}\"" if @doc_def['label_class']%> ><%=@doc_def['label']%></label>
-  <span <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class']%>><%=@doc_def['value']%></span>
+  <label <%= "for=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+         <%="class=\"#{@doc_def['label_class']}\"" if @doc_def['label_class'] %>
+  >
+    <%= @doc_def['label'] %>
+  </label>
+  <span
+    <%= "id=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+    <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class'] %>
+  ><%=@doc_def['value']%></span>
 </div>

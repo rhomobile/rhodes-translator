@@ -1,5 +1,6 @@
 <form 
-  <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
+  <%= "id=\"#{@doc_def['id']}\"" if @doc_def['name'] %>
+  <%= "class=\"#{@doc_def['form_class']}\"" if @doc_def['form_class'] %>
   <%= "action=\"#{@doc_def['action']}\"" if @doc_def['action'] %>
   <%= "method=\"#{@doc_def['method']}\"" if @doc_def['method'] %> >
 <input type="hidden" name="metadata_action" value="<%= @action %>"/>

@@ -1,4 +1,4 @@
-<tr>
+<tr <%= "class=\"#{@doc_def['field_class']}\"" if @doc_def['field_class'] %>>
   <td><%= @doc_def["label"] %></td>
   <td><%= @doc_def["value"] %></td>
 </tr>

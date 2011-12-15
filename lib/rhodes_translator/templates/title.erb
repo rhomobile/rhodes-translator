@@ -1,3 +1,4 @@
-<div id="<%=  @doc_def["divid"].nil? ?  "pageTitle" : @doc_def["divid"] %>">
+<div data-role="header" data-position="inline">
   <h1><%= @doc_def["title"] %></h1>
+  <%= @content %>
 </div>
