@@ -1,4 +1,4 @@
 <tr <%= "class=\"#{@doc_def['field_class']}\"" if @doc_def['field_class'] %>>
-  <td><%= @doc_def["label"] %></td>
-  <td><%= @doc_def["value"] %></td>
+  <td <%= "class=\"#{@doc_def['label_class']}\"" if @doc_def['label_class'] %>><%= @doc_def["label"] %></td>
+  <td <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class'] %>><%= @doc_def["value"] %></td>
 </tr>
