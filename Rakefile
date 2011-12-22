@@ -27,7 +27,7 @@ begin
     gemspec.homepage = %q{http://rhomobile.com/}
     gemspec.authors = ["Rhomobile"]
     gemspec.email = %q{dev@rhomobile.com}
-    gemspec.version = "0.0.3"
+    gemspec.version = "0.0.4"
     gemspec.files =  FileList["{lib}/**/*"].to_a
 
   end
