@@ -1,7 +1,7 @@
-<% unless @doc_def["left_text"].nil? %>
-    <a href="<%= @doc_def["left_uri"] %>"><%= @doc_def["left_text"] %></a>
+<% if @doc_def["left_btn_text"] || @doc_def["left_btn_is_back"] %>
+    <a href="<%= @doc_def["left_btn_uri"] %>"><%= @doc_def["left_btn_text"] || "Back" %></a>
 <% end %>
 
-<% unless @doc_def["right_text"].nil? %>
-    <a href="<%= @doc_def["right_uri"] %>"><%= @doc_def["right_text"] %></a>
+<% if @doc_def["right_btn_text"] %>
+    <a href="<%= @doc_def["right_btn_uri"] %>"><%= @doc_def["right_btn_text"] %></a>
 <% end %>

@@ -1,14 +1,18 @@
-<label <%= "for=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
-     class="fieldLabel <%= @doc_def['label_class'] || "" %>"
->
-<%= @doc_def['label'] %>
-</label>
-<input type="checkbox"
-    <%= "id=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
-    <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
-    <% if @doc_def['value'] %>
-        <%= "checked" if @doc_def['value'] == 'true' %>
-    <% else %>
-        <%= "checked" if @doc_def['default_value'] %>
-    <% end %>
-/>
+<div data-role="fieldcontain" <%= "class=\"#{@doc_def['field_class']}\"" if @doc_def['field_class'] %>>
+  <input type="checkbox"
+         <%= "id=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+         <%= "name=\"#{@doc_def['name']}\"" if @doc_def['name'] %>
+         <%= "class=\"#{@doc_def['value_class']}\"" if @doc_def['value_class'] %>
+         <% if @doc_def['value'] %>
+         <%= "checked" if @doc_def['value'] == 'true' %>
+         <% else %>
+         <%= "checked" if @doc_def['default_value'] %>
+         <% end %>
+         <%= "disabled" if not @doc_def['editable'].nil? and not @doc_def['editable'] %>
+         />
+  <label <%= "for=\"#{@doc_def['id']}\"" if @doc_def['id'] %>
+         class="fieldLabel <%= @doc_def['label_class'] || "" %>"
+  >
+    <%= @doc_def['label'] %>
+  </label>
+</div>
