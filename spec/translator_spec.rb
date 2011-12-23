@@ -18,17 +18,17 @@ describe "Translator" do
 
   it "should translate textfield show action" do
     expected = open(get_template('text_show.html')).read
-    translate(@textfield).should == expected
+    translate(@textfield).split.join('').should == expected.split.join('')
   end
 
   it "should handle nested views" do
     expected = open(get_template('nest_show.html')).read
-    translate(@view2).should == expected
+    translate(@view2).split.join('').should == expected.split.join('')
   end
 
   it "should handle complex templates" do
     expected = open(get_template('complex_show.html')).read
-    translate(@complex).should == expected
+    translate(@complex).split.join('').should == expected.split.join('')
     
   end
 

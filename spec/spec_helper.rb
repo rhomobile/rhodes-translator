@@ -29,14 +29,14 @@ describe "RhodesTranslatorHelper", :shared => true do
                 'children' => [@panel2] }
                      
     @view1 = { 'title' => 'View 1',
-               'type' => 'view',
+               'type' => 'panel',
                'children' => [@panel1,@panel2] }
 
     @view2 = { 'title' => 'View 2',
-               'type' => 'view',
+               'type' => 'panel',
                'children' => [@view1,@view1] }
     @complex = { 'title' => 'View 2',
-                 'type' => 'view',
+                 'type' => 'panel',
                  'children' => [@textfield,@view2,@panel3,@textfield] }
   end
   
